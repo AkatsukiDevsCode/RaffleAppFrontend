@@ -1,0 +1,78 @@
+name: Continuous Integration Pull Request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - production
+      - develop
+
+# Esto cancela ejecuciones antiguas si subes un nuevo commit rápido al mismo PR
+concurrency:
+  group: ci-pr-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci-pipeline:
+    permissions:
+      contents: read
+      pull-requests: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Obligatorio para que Commitlint pueda leer el historial
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Ajusta esto si usan otra versión de Node
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Validate PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Solo permitimos estos tipos en el título del PR
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            chore
+          
+          
+          requireScope: false
+          
+          subjectPattern: ^(?=.{1,120}$)[a-zA-Z].+$
+      - name: Architecture Lint (ls-lint)
+        run: pnpm exec ls-lint
+
+      - name: Code Linting (ESLint)
+        run: pnpm lint
+
+      - name: Static Type Checking (TypeScript)
+        run: pnpm run typecheck
+
+      - name: Dead Code & Dependency Analysis (Knip)        
+        if: github.base_ref == 'production'
+        run: pnpm exec knip
+      
+      - name: Add Folder Labels
+        uses: actions/labeler@v5
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          sync-labels: true
