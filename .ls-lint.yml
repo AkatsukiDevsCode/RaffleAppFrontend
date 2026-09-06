@@ -1,0 +1,122 @@
+ls:
+
+  # Capa Domain
+  "src/**/dtos/**":
+    .ts: regex:^[a-z0-9-]+.dto$
+  "src/**/entities/**":
+    .ts: regex:^[a-z0-9-]+.entity$
+  "src/**/interfaces/**":
+    .ts: regex:^[a-z0-9-]+.interface$
+  "src/**/repositories/**":
+    .ts: regex:^[a-z0-9-]+.repository$
+  "src/**/datasources/**":
+    .ts: regex:^[a-z0-9-]+.datasource$
+
+  # Capa Infrastructure
+  "src/**/mappers/**":
+    .ts: regex:^[a-z0-9-]+.mapper$
+
+  # Capa Application (Casos de uso)
+  "src/**/use-cases/**":
+    .ts: regex:^[a-z0-9-]+.use-case$
+
+  # Capa Presentation / Frontend
+  "src/**/pages/**":
+    .tsx: regex:^[a-z0-9-]+.page$
+  "src/**/hooks/**":
+    .ts: regex:^[a-z0-9-]+.hook$
+  "src/**/context/**":
+    .tsx: regex:^[a-z0-9-]+.context$
+    .ts: regex:^[a-z0-9-]+.context$
+  "src/**/stores/**":
+    .ts: regex:^[a-z0-9-]+.store$
+  "src/**/reducers/**":
+    .ts: regex:^[a-z0-9-]+.reducer$
+  
+  # Shared & Others
+  "src/**/helpers/**":
+    .ts: regex:^[a-z0-9-]+.helper$
+  "src/**/utils/**":
+    .ts: regex:^[a-z0-9-]+.util$
+  "src/**/configs/**":
+    .ts: regex:^[a-z0-9-]+.config$
+  "src/**/config/**":
+    .ts: regex:^[a-z0-9-]+.config$
+  "src/**/errors/**":
+    .ts: regex:^[a-z0-9-]+.error$
+  "src/**/exceptions/**":
+    .ts: regex:^[a-z0-9-]+.exception$
+  "src/**/constants/**":
+    .ts: regex:^[a-z0-9-]+.constant$
+  "src/**/types/**":
+    .ts: regex:^[a-z0-9-]+.type$
+  "src/**/models/**":
+    .ts: regex:^[a-z0-9-]+.model$
+  "src/**/schemas/**":
+    .ts: regex:^[a-z0-9-]+.schema$
+  "src/**/guards/**":
+    .ts: regex:^[a-z0-9-]+.guard$
+  "src/**/interceptors/**":
+    .ts: regex:^[a-z0-9-]+.interceptor$
+  "src/**/middlewares/**":
+    .ts: regex:^[a-z0-9-]+.middleware$
+  "src/**/services/**":
+    .ts: regex:^[a-z0-9-]+.service$
+  "src/**/plugins/**":
+    .ts: regex:^[a-z0-9-]+.plugin$
+  "src/**/providers/**":
+    .ts: regex:^[a-z0-9-]+.provider$
+  "src/**/validators/**":
+    .ts: regex:^[a-z0-9-]+.validator$
+  "src/**/controllers/**":
+    .ts: regex:^[a-z0-9-]+.controller$
+
+  # Patterns
+  "src/**/strategies/**":
+    .ts: regex:^[a-z0-9-]+.strategy$
+  "src/**/singletons/**":
+    .ts: regex:^[a-z0-9-]+.singleton$
+  "src/**/factories/**":
+    .ts: regex:^[a-z0-9-]+.factory$
+  "src/**/builders/**":
+    .ts: regex:^[a-z0-9-]+.builder$
+  "src/**/observers/**":
+    .ts: regex:^[a-z0-9-]+.observer$
+  "src/**/facades/**":
+    .ts: regex:^[a-z0-9-]+.facade$
+  "src/**/proxies/**":
+    .ts: regex:^[a-z0-9-]+.proxy$
+  "src/**/commands/**":
+    .ts: regex:^[a-z0-9-]+.command$
+  "src/**/states/**":
+    .ts: regex:^[a-z0-9-]+.state$
+  "src/**/mediators/**":
+    .ts: regex:^[a-z0-9-]+.mediator$
+  "src/**/decorators/**":
+    .ts: regex:^[a-z0-9-]+.decorator$
+  "src/**/adapters/**":
+    .ts: regex:^[a-z0-9-]+.adapter$
+  
+  "src/**":
+    .dir: kebab-case
+    .ts: kebab-case
+    .tsx: kebab-case
+
+ignore:
+  - node_modules
+  - .git
+  - .github
+  - .husky
+  - dist
+  - build
+  - android
+  - docs
+  - .vscode
+  - scripts
+  - .agents
+  - __test__
+  - __tests__
+  - .env.local
+  - .env.template
+  - vite.config.ts
+  - "*.json"

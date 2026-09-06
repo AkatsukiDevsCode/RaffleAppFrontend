@@ -1,0 +1,47 @@
+module:config:
+  - changed-files:
+    - any-glob-to-any-file: 'src/config/**/*'
+
+module:shared:
+  - changed-files:
+    - any-glob-to-any-file: 'src/shared/**/*'
+
+module:expenses:
+  - changed-files:
+    - any-glob-to-any-file: 'src/features/expenses/**/*'
+
+public:
+  - changed-files:
+    - any-glob-to-any-file: 'public/**/*'
+
+deps:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'bun.lockb'
+
+tools:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'vite.config.*'
+      - '.eslintrc.*'
+      - '.prettierrc*'
+      - 'tsconfig.*'
+      - 'commitlint.config.*'
+      - '.ls-lint.yml'
+
+root:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'src/App.css'
+      - 'src/App.tsx'
+      - 'src/main.tsx'
+      - 'src/index.css'
+      - 'index.html'
+
+ci:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**/*'
+      - '.husky/**/*'

@@ -1,0 +1,14 @@
+localBranchName=$(git rev-parse --abbrev-ref HEAD)
+validBranchRegex="^(production|develop|(feat|fix|docs|style|refactor|chore)\/[a-z0-9-]+)$"
+
+# Ignorar si estamos en un estado de 'detached HEAD'
+if [ "$localBranchName" = "HEAD" ]; then
+    exit 0
+fi
+
+if ! echo "$localBranchName" | grep -Eq "$validBranchRegex"; then
+    echo "Error: Nombre de rama inválido '$localBranchName'"
+    echo "Los nombres de las ramas deben seguir el estándar:"
+    echo "  - type/modulo-funcionalidad[-ticket] (ejemplo: feat/admin-desk-login-123)"
+    exit 1
+fi
