@@ -1,3 +1,6 @@
+import { RaffleCard } from "src/features/raffles/presentation/components/cards/raffle-card";
+import { SAMPLE_RAFFLES } from "src/features/raffles/presentation/constants/raffle-samples.constant";
+
 export default function Dashboard() {
     return (
         <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-900/5">
@@ -9,11 +12,14 @@ export default function Dashboard() {
                     <p className="text-sm font-semibold text-blue-600">Total Sorteos</p>
                     <p className="mt-1 text-3xl font-bold text-blue-900">12</p>
                 </div>
+
                 <div className="rounded-xl border border-green-100 bg-green-50 p-4 transition-transform hover:scale-105">
                     <p className="text-sm font-semibold text-green-600">Ganancias</p>
                     <p className="mt-1 text-3xl font-bold text-green-900">$1,250</p>
                 </div>
             </div>
+            {/* Prueba de componente de card */}
+            <RaffleCard raffle={SAMPLE_RAFFLES[0]} />
         </div>
     );
 }
